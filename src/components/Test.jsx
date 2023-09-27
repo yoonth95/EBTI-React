@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import questionData from 'data/question';
 import resultData from 'data/result';
 import loadingImage from 'assets/images/egg_loading.gif';
-import { GlobalStyles, Container, TestButton, ProgressDiv, ProgressText, PrevBtn, Progress, ProgressBar, QuestionDiv, Question, Loading, Image } from 'styles/StyledComponents'
+import { GlobalStyles, Container, TestButton, ProgressDiv, ProgressText, ProgressLine, PrevBtn, Progress, ProgressBar, QuestionDiv, Question, Loading, Image } from 'styles/StyledComponents'
 import { faChevronLeft, faFaceGrinBeamSweat, faBookOpenReader, faListCheck, faPersonCircleQuestion, faPencil, faUtensils, faMapLocationDot, faKitchenSet, faChildren, faReceipt } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from 'react-router-dom';
 
 const Test = () => {
+  const navigate = useNavigate();
+  const timeoutRef = useRef(null);
+
   const [qNum, setQNum] = useState(0);
   const [choices, setChoices] = useState({});
   const [isFinished, setIsFinished] = useState(false);
@@ -30,6 +34,12 @@ const Test = () => {
   useEffect(() => {
     if (qNum === questionData.length-1) {
       handleResults();
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     }
   }, [qNum, choices]);
 
@@ -58,30 +68,34 @@ const Test = () => {
     );
   }
 
-  const handleResults = () => {
+  const handleResults = async () => {
     if (Object.keys(choices).length === questionData.length) {
+      const typeIdx = await weightCalc();
       setIsFinished(true);
-      const TotalList = weightCalc();
-      const first = TotalList[0] > TotalList[1] ? 'E' : 'I';
-      const second = TotalList[2] > TotalList[3] ? 'S' : 'N';
-      const fourth = TotalList[4] > TotalList[5] ? 'J' : 'P';
-      const third = TotalList[6] > TotalList[7] ? 'T' : 'F';
-      const typeIdx = resultData[first+second+third+fourth];
       
-      // setTimeout(() => {
-      //     location.href = `/result?idx=${typeIdx}`;
-      // }, 3000)
+      timeoutRef.current = setTimeout(() => {
+        navigate(`/result?idx=${typeIdx}`);
+      }, 2000);
     }
   }
 
-  const weightCalc = () => {
+  const weightCalc = async () => {
     let sumList = [0, 0, 0, 0, 0, 0, 0, 0];
+    const decodeWeight = JSON.parse(decodeUnicode(process.env.REACT_APP_WEIGHT));
+
     for (let i in choices) {
-      for (let [index, item] of JSON.parse(decodeUnicode(process.env.REACT_APP_WEIGHT))[i][choices[i]].entries()) {
+      for (let [index, item] of decodeWeight[i][choices[i]].entries()) {
         sumList[index] += item;
       }
     }
-    return sumList;
+
+    const first = sumList[0] > sumList[1] ? 'E' : 'I';
+    const second = sumList[2] > sumList[3] ? 'S' : 'N';
+    const fourth = sumList[4] > sumList[5] ? 'J' : 'P';
+    const third = sumList[6] > sumList[7] ? 'T' : 'F';
+    const typeIdx = resultData[first+second+third+fourth];
+
+    return typeIdx;
   }
 
   const renderTextWithBreaks = (text) => {
@@ -107,12 +121,12 @@ const Test = () => {
           <>
             <ProgressDiv>
               <ProgressText><strong>{qNum+1}</strong> / 12</ProgressText>
-              <div style={{display: 'flex', alignItems: 'center'}}>
+              <ProgressLine>
                 <PrevBtn onClick={prevClick}><FontAwesomeIcon icon={faChevronLeft} /></PrevBtn>
                 <Progress>
-                  <ProgressBar role='progressbar' aria-valuenow={0} aria-valuemin={0} aria-valuemax={100} style={{width: `${((qNum+1)*100)/questionData.length}%`}}></ProgressBar>
+                  <ProgressBar width={((qNum+1)*100)/questionData.length} role='progressbar' aria-valuenow={0} aria-valuemin={0} aria-valuemax={100}></ProgressBar>
                 </Progress>
-              </div>
+              </ProgressLine>
             </ProgressDiv>
 
             <QuestionDiv>
