@@ -159,6 +159,11 @@ export const ProgressText = styled.span`
   text-align: end;
 `;
 
+export const ProgressLine = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const PrevBtn = styled.span`
   border: 1px solid #fff2cc;
   width: 22px;
@@ -186,15 +191,16 @@ export const Progress = styled.div`
 `;
 
 export const ProgressBar = styled.div`
-  background-color: #ffe400;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: ${props => props.width}%;
   overflow: hidden;
   color: #fff;
   text-align: center;
   white-space: nowrap;
   transition: width .6s ease;
+  background-color: #ffe400;
 `;
 
 export const QuestionDiv = styled.div`
@@ -228,5 +234,268 @@ export const Loading = styled.div`
     font-family: "BMHANNAPro";
     font-style: normal;
     font-size: 2.5rem;
+  }
+`
+
+// result 페이지
+export const ResultContainer = styled.main`
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  overflow: visible;
+  max-width: 550px;
+  min-height: 550px;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+`
+
+export const TotalPage = styled.div`
+  transition: background-color 0.2s ease;
+  z-index: 99;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff2cc;
+  box-shadow: 0 -2px 10px 1px rgba(0, 0, 0, 0.2);
+`
+
+export const ResultPage = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
+
+export const ResultTitleH1 = styled.h1`
+  font-family: "BMJUA";
+  font-style: normal;
+  font-weight: 100;
+  font-size: 2.5rem;
+  margin-top: 50px;
+  text-align: center;
+  color: #8b4513;
+`
+
+export const ResultTitleP = styled.p`
+  font-family: "BMHANNAPro";
+  font-style: normal;
+  font-weight: 100;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #654321;
+`
+
+export const ResultImage = styled.div`
+  img {
+    width: 20rem;
+    height: 20rem;
+    object-fit: contain;
+  }
+
+  div {
+    font-family: "BMHANNAPro";
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #654321;
+    line-height: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 425px) {
+    img {
+      width: 17rem;
+      height: 17rem;
+    }
+  }
+`
+
+export const ResultInfo = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    padding-left: 1rem;
+    margin: 20px 0 40px 0;
+  }
+
+  ul li {
+    margin-bottom: 10px;
+    font-family: "BMHANNAPro";
+  }
+`
+
+export const Guideline = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: "BMJUA";
+  background-color: #fff9c4;
+
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
+`
+
+export const GuidelineTitle = styled.h2`
+  font-size: 24px;
+  color: #ffab00;
+  text-align: center;
+  margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
+`
+
+export const GuidelineList = styled.ol`
+  list-style: decimal;
+  padding: 0 10px 0 20px;
+
+  & li {
+    font-family: "BMHANNAPro";
+    font-size: 16px;
+    color: #424242;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    & li {
+      font-size: 14px;
+    }
+  }
+  
+`
+
+export const UrlDown = styled.div`
+  width: 100%;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+const SharedButtonStyles = `
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #ffab00;
+  color: #424242;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-family: "BMHANNAPro";
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffe400;
+    text-decoration: none;
+  }
+`;
+
+export const YoutubeLink = styled.a`
+  ${SharedButtonStyles}
+
+  @media (max-width: 480px) {
+    padding: 8px 12px;
+  }
+`
+
+export const ResultShare = styled.div`
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-family: "BMHANNAPro";
+  }
+`
+
+export const Shares = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+`;
+
+export const ShareButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: 0px center;
+  padding: 0px;
+  border: 0px;
+  outline: 0px;
+  
+  &:hover {
+    transform: translateY(-4px);
+  }
+  
+  & svg {
+    width: 30px;
+    height: 30px;
+    fill: rgb(255, 255, 255);
+  }
+
+  &.clip {
+    background-color: rgb(255, 138, 115);
+  }
+  
+  &.kakao {
+    background-color: rgb(247, 213, 1);
+  }
+
+  &.facebook {
+    background-color: rgb(57, 85, 152);
+  }
+
+  &.twitter {
+    background-color: rgb(45, 182, 247);
+  }
+`;
+
+export const ResultBtn = styled.div`
+  width: 35%;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  margin: 30px 0 100px 0;
+  flex-direction: column;
+
+  button {
+    ${SharedButtonStyles};
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    width: 50%;
   }
 `
