@@ -4,10 +4,11 @@ import { GlobalStyles, ResultContainer, TotalPage, ResultPage, ResultTitleH1, Re
 import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import { faReply, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Result = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [eggTypeInfo, setEggTypeInfo] = useState({
     typeTitle: '',
     typeImage: '',
@@ -23,17 +24,19 @@ const Result = () => {
     const query = queryParams.get('idx');
     const eggType = resultInfo[query];
 
-    setEggTypeInfo(prev => ({
-      ...prev, 
-      typeTitle: eggType['typeTitle'],
-      typeImage: eggType['typeImage'],
-      typeName: eggType['typeName'],
-      typeTag: eggType['typeTag'],
-      typeUrl: eggType['typeUrl'],
-      typeInfo: splitList(eggType['typeInfo']),
-      typeGuide: splitList(eggType['typeGuide'])
-    }));
-
+    // 동적 import
+    import(`assets/images/${eggType['typeImage']}`).then((image) => {
+      setEggTypeInfo(prev => ({
+        ...prev,
+        typeTitle: eggType['typeTitle'],
+        typeImage: image.default,
+        typeName: eggType['typeName'],
+        typeTag: eggType['typeTag'],
+        typeUrl: eggType['typeUrl'],
+        typeInfo: splitList(eggType['typeInfo']),
+        typeGuide: splitList(eggType['typeGuide'])
+      }));
+    });
   }, [location]);
 
   const renderTextWithBreaks = (text) => {
@@ -51,7 +54,15 @@ const Result = () => {
       newDic.push({ id: index, text: item })
     });
 
-    return newDic
+    return newDic;
+  }
+
+  const Retry = () => {
+    navigate('/');
+  }
+
+  const AllView = () => {
+    navigate('/view');
   }
 
   return (
@@ -107,8 +118,8 @@ const Result = () => {
           </ResultShare>
 
           <ResultBtn>
-            <button type="button"><FontAwesomeIcon icon={faReply} />&nbsp;테스트 다시 하기</button>
-            <button type="button"><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
+            <button type="button" onClick={Retry}><FontAwesomeIcon icon={faReply} />&nbsp;테스트 다시 하기</button>
+            <button type="button" onClick={AllView}><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
           </ResultBtn>
         </TotalPage>
 
