@@ -53,6 +53,10 @@ export const H1 = styled.h1`
   @media (max-width: 425px) {
     font-size: 1.8rem;
   }
+
+  @media (max-width: 375px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const H2 = styled.h2`
@@ -67,6 +71,10 @@ export const H2 = styled.h2`
 
   @media (max-width: 425px) {
     font-size: 2rem;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 1.6rem;
   }
 `;
 
@@ -247,7 +255,6 @@ export const ResultContainer = styled.main`
   bottom: 0px;
   overflow: visible;
   max-width: 550px;
-  min-height: 550px;
   z-index: 2;
   height: 100%;
   width: 100%;
@@ -497,5 +504,66 @@ export const ResultBtn = styled.div`
 
   @media (max-width: 480px) {
     width: 50%;
+  }
+`
+
+// view 페이지
+export const ViewContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 16px);
+  text-align: center;
+  position: relative;
+  max-width: 425px;
+  align-items: center;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin: auto;
+  justify-content: center;
+`
+
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 5px; 
+  width: 100%;
+  height: 50%;
+  margin: 25px 0px 50px 0;
+`
+
+export const GridItem = styled.a`
+  background-color: #fff; 
+  border: none;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 15px; 
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-decoration-line: none;
+
+  &:hover {
+    background-color: #ffcc00;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  & p {
+    text-decoration: none;
+    margin: 5px 0 0 0;
+    font-family: "BMJUA";
+    color: #654321;
+  }
+
+  @media (max-width: 375px) {
+    & p {
+      font-size: 0.9rem;
+    }
   }
 `
