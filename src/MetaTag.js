@@ -14,12 +14,13 @@ const MetaTag = () => {
       <meta property="og:title" content="나는 어떤 계란 요리일까?" />
       <meta property="og:site_name" content="나는 어떤 계란 요리일까?" />
       <meta property="og:description" content="계란 요리로 보는 성격 유형 테스트" />
-      <meta property="og:image" content={mainImage} />
+      <meta property="og:image" content={`https://egg-type.netlify.app${mainImage}`} />
       <meta property="og:url" content="https://egg-type.netlify.app/" />
 
       <meta name="twitter:title" content="나는 어떤 계란 요리일까?" />
       <meta name="twitter:description" content="계란 요리로 보는 성격 유형 테스트" />
-      <meta name="twitter:image" content={mainImage} />
+      <meta name="twitter:image" content={`https://egg-type.netlify.app${mainImage}`} />
+
 
       <link rel="canonical" href="https://egg-type.netlify.app/" />
     </Helmet>
