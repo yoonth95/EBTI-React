@@ -6,6 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+window.Kakao.init(process.env.REACT_APP_KAKAO_API);
+window.Kakao.isInitialized();
+
 root.render(
   <HelmetProvider>
     <App />
