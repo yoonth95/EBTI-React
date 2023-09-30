@@ -70,12 +70,6 @@ const Result = () => {
 
   const ShareBtn = (type) => {
     if (type === 'kakao') {
-
-      console.log(window.location.origin);
-      console.log(eggTypeInfo.typeImage);
-
-      console.log(`${window.location.origin}${eggTypeInfo.typeImage}`)
-
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
