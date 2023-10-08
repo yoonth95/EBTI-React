@@ -4,13 +4,10 @@ import Main from 'components/Main';
 import Test from 'components/Test';
 import Result from 'components/Result';
 import View from 'components/View';
-import MetaTag from 'MetaTag';
 
 const App = () => {
   return (
     <>
-      <MetaTag />
-      
       <Router>
         <Routes>
           <Route path='/' element={<Main />}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import mainImage from 'assets/images/main_image.png';
+// import mainImage from 'assets/images/main_image.png';
 
 const MetaTag = () => {
   return (
@@ -14,14 +14,10 @@ const MetaTag = () => {
       <meta property="og:title" content="나는 어떤 계란 요리일까?" />
       <meta property="og:site_name" content="나는 어떤 계란 요리일까?" />
       <meta property="og:description" content="계란 요리로 보는 성격 유형 테스트" />
-      <meta property="og:image" content={mainImage} />
-      <meta property="og:image:width" content="1200" /> 
-      <meta property="og:image:height" content="630" />
       <meta property="og:url" content="https://egg-type.netlify.app/" />
 
       <meta name="twitter:title" content="나는 어떤 계란 요리일까?" />
       <meta name="twitter:description" content="계란 요리로 보는 성격 유형 테스트" />
-      <meta name="twitter:image" content={mainImage} />
       <meta name="twitter:card" content="summary_large_image" />
 
       <link rel="canonical" href="https://egg-type.netlify.app/" />
