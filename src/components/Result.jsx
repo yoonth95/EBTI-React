@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Result = () => {
-  const mainUrl = "https://egg-type.netlify.app/";
+  const mainUrl = "https://egg-test.web.app/";
   const currentUrl = window.location.href;
 
   const location = useLocation();
