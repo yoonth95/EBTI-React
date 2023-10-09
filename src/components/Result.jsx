@@ -5,6 +5,8 @@ import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import { faReply, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Result = () => {
   const mainUrl = "https://egg-test.web.app/";
@@ -104,16 +106,12 @@ const Result = () => {
       const text = '나는 어떤 계란 요리일까?'
       window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + currentUrl);
     } else {
-      const copyToClipboard = (text) => {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-      };
+      toast.success("복사 완료", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1000  // 1초 후에 사라짐
+      });
 
-      copyToClipboard(currentUrl);
+      navigator.clipboard.writeText(currentUrl);
     }
   }
 
@@ -174,7 +172,8 @@ const Result = () => {
             <button type="button" onClick={AllView}><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
           </ResultBtn>
         </TotalPage>
-
+        
+        <ToastContainer />
       </ResultContainer>
     </>
   );
