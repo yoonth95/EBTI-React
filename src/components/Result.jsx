@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import resultInfo from 'data/resultInfo';
 import { GlobalStyles, ResultContainer, TotalPage, ResultPage, ResultTitleH1, ResultTitleP, ResultImage, ResultInfo, Guideline, GuidelineTitle, GuidelineList, UrlDown, YoutubeLink, ResultShare, Shares, ShareButton, ResultBtn, KakaoAd } from 'styles/StyledComponents'
 import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Result = () => {
+  const scriptElement = useRef(null);
   const mainUrl = "https://egg-test.web.app/";
   const currentUrl = window.location.href;
 
@@ -43,18 +44,18 @@ const Result = () => {
       }));
     });
 
-    let ins = document.createElement('ins');
-    let scr = document.createElement('script');
-    ins.className = 'kakao_ad_area';
-    ins.style = "display:none; width:100%;";
-    scr.async = 'true';
-    scr.type = "text/javascript";
-    scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
-    ins.setAttribute('data-ad-width','320');
-    ins.setAttribute('data-ad-height','50');
-    ins.setAttribute('data-ad-unit','DAN-cTC0ZH3F42SrxwqD');
-    document.querySelector('.adfit').appendChild(ins);
-    document.querySelector('.adfit').appendChild(scr);
+    const script = document.createElement("script");
+    script.setAttribute(
+      "src",
+      "https://t1.daumcdn.net/kas/static/ba.min.js"
+    );
+    script.setAttribute(
+      "charset",
+      "utf-8"
+    );
+
+    script.setAttribute("async", "true");
+    scriptElement.current?.appendChild(script);
   }, [location]);
 
   const renderTextWithBreaks = (text) => {
@@ -185,7 +186,15 @@ const Result = () => {
             <button type="button" onClick={AllView}><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
           </ResultBtn>
 
-          <KakaoAd className='adfit'></KakaoAd>
+          <KakaoAd ref={scriptElement}>
+            <ins
+              className="kakao_ad_area"
+              style={{ display: "none" }}
+              data-ad-unit="DAN-cTC0ZH3F42SrxwqD"
+              data-ad-width="320"
+              data-ad-height="50"
+            />
+          </KakaoAd>
         </TotalPage>
         
         <ToastContainer />

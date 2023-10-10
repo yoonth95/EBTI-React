@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { GlobalStyles, ViewContainer, H1, H2, GridContainer, GridItem, KakaoAd } from 'styles/StyledComponents'
 
 const gridData = [
@@ -21,24 +21,25 @@ const gridData = [
 ]
 
 const View = () => {
+  const scriptElement = useRef(null);
   const [imgList, setImgList] = useState([]);
 
   useEffect(() => {
     const images = Array.from({ length: 16 }, (_, i) => require(`../assets/images/${i+1}.png`))
     setImgList(images);
 
-    let ins = document.createElement('ins');
-    let scr = document.createElement('script');
-    ins.className = 'kakao_ad_area';
-    ins.style = "display:none; width:100%;";
-    scr.async = 'true';
-    scr.type = "text/javascript";
-    scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
-    ins.setAttribute('data-ad-width','320');
-    ins.setAttribute('data-ad-height','50');
-    ins.setAttribute('data-ad-unit','DAN-cTC0ZH3F42SrxwqD');
-    document.querySelector('.adfit').appendChild(ins);
-    document.querySelector('.adfit').appendChild(scr);
+    const script = document.createElement("script");
+    script.setAttribute(
+      "src",
+      "https://t1.daumcdn.net/kas/static/ba.min.js"
+    );
+    script.setAttribute(
+      "charset",
+      "utf-8"
+    )
+
+    script.setAttribute("async", "true");
+    scriptElement.current?.appendChild(script);
   }, []);
 
   return (
@@ -57,7 +58,15 @@ const View = () => {
             </GridItem>
           ))}
         </GridContainer>
-        <KakaoAd className='adfit'></KakaoAd>
+        <KakaoAd ref={scriptElement}>
+          <ins
+            className="kakao_ad_area"
+            style={{ display: "none" }}
+            data-ad-unit="DAN-cTC0ZH3F42SrxwqD"
+            data-ad-width="320"
+            data-ad-height="50"
+          />
+        </KakaoAd>
       </ViewContainer>
     </>
   );
