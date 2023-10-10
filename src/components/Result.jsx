@@ -42,6 +42,19 @@ const Result = () => {
         typeGuide: splitList(eggType['typeGuide'])
       }));
     });
+
+    let ins = document.createElement('ins');
+    let scr = document.createElement('script');
+    ins.className = 'kakao_ad_area';
+    ins.style = "display:none; width:100%;";
+    scr.async = 'true';
+    scr.type = "text/javascript";
+    scr.src = "//t1.daumcdn.net/kas/static/ba.min.js";
+    ins.setAttribute('data-ad-width','320');
+    ins.setAttribute('data-ad-height','50');
+    ins.setAttribute('data-ad-unit','DAN-cTC0ZH3F42SrxwqD');
+    document.querySelector('.adfit').appendChild(ins);
+    document.querySelector('.adfit').appendChild(scr);
   }, [location]);
 
   const renderTextWithBreaks = (text) => {
@@ -172,14 +185,7 @@ const Result = () => {
             <button type="button" onClick={AllView}><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
           </ResultBtn>
 
-          <KakaoAd>
-            <ins className="kakao_ad_area" style={{display: "none"}}
-              data-ad-unit = "DAN-cTC0ZH3F42SrxwqD"
-              data-ad-width = "320"
-              data-ad-height = "50">
-            </ins>
-            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-          </KakaoAd>
+          <KakaoAd className='adfit'></KakaoAd>
         </TotalPage>
         
         <ToastContainer />
