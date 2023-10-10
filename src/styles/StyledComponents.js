@@ -494,7 +494,7 @@ export const ResultBtn = styled.div`
   justify-content: space-around;
   align-items: center;
   display: flex;
-  margin: 30px 0 100px 0;
+  margin: 30px 0 50px 0;
   flex-direction: column;
 
   button {
@@ -511,7 +511,7 @@ export const ResultBtn = styled.div`
 export const ViewContainer = styled.main`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 16px);
+  // height: calc(100vh - 16px);
   text-align: center;
   position: relative;
   max-width: 425px;
@@ -520,6 +520,11 @@ export const ViewContainer = styled.main`
   padding-left: 0px;
   margin: auto;
   justify-content: center;
+
+  &:first-child::before {
+    content: '';
+    height: 60px;
+  }
 `
 
 export const GridContainer = styled.div`
@@ -527,7 +532,7 @@ export const GridContainer = styled.div`
   grid-template-columns: auto auto auto auto;
   gap: 5px; 
   width: 100%;
-  height: 50%;
+  height: 540px;
   margin: 25px 0px 50px 0;
 `
 
@@ -566,4 +571,12 @@ export const GridItem = styled.a`
       font-size: 0.9rem;
     }
   }
+`
+
+export const KakaoAd = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: -webkit-fill-available;
 `

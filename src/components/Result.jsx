@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import resultInfo from 'data/resultInfo';
-import { GlobalStyles, ResultContainer, TotalPage, ResultPage, ResultTitleH1, ResultTitleP, ResultImage, ResultInfo, Guideline, GuidelineTitle, GuidelineList, UrlDown, YoutubeLink, ResultShare, Shares, ShareButton, ResultBtn } from 'styles/StyledComponents'
+import { GlobalStyles, ResultContainer, TotalPage, ResultPage, ResultTitleH1, ResultTitleP, ResultImage, ResultInfo, Guideline, GuidelineTitle, GuidelineList, UrlDown, YoutubeLink, ResultShare, Shares, ShareButton, ResultBtn, KakaoAd } from 'styles/StyledComponents'
 import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import { faReply, faTableList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -171,6 +171,15 @@ const Result = () => {
             <button type="button" onClick={Retry}><FontAwesomeIcon icon={faReply} />&nbsp;테스트 다시 하기</button>
             <button type="button" onClick={AllView}><FontAwesomeIcon icon={faTableList} />&nbsp;전체 유형 보기</button>
           </ResultBtn>
+
+          <KakaoAd>
+            <ins className="kakao_ad_area" style={{display: "none"}}
+              data-ad-unit = "DAN-cTC0ZH3F42SrxwqD"
+              data-ad-width = "320"
+              data-ad-height = "50">
+            </ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+          </KakaoAd>
         </TotalPage>
         
         <ToastContainer />

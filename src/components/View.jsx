@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GlobalStyles, ViewContainer, H1, H2, GridContainer, GridItem } from 'styles/StyledComponents'
+import { GlobalStyles, ViewContainer, H1, H2, GridContainer, GridItem, KakaoAd } from 'styles/StyledComponents'
 
 const gridData = [
   { title: '계란 김밥', alt: '계란 김밥 이미지' },
@@ -44,6 +44,14 @@ const View = () => {
             </GridItem>
           ))}
         </GridContainer>
+        <KakaoAd>
+          <ins className="kakao_ad_area" style={{display: "none"}}
+            data-ad-unit = "DAN-cTC0ZH3F42SrxwqD"
+            data-ad-width = "320"
+            data-ad-height = "50">
+          </ins>
+          <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        </KakaoAd>
       </ViewContainer>
     </>
   );
