@@ -50,6 +50,8 @@ export const H1 = styled.h1`
   line-height: 30px;
   color: #8b4513;
 
+  margin-top: ${props => props.marginTop};
+
   @media (max-width: 425px) {
     font-size: 1.8rem;
   }
@@ -573,10 +575,118 @@ export const GridItem = styled.a`
   }
 `
 
+// 카카오 광고
 export const KakaoAd = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
   width: -webkit-fill-available;
+`
+
+// NotFound.jsx
+const wobble = keyframes`
+  0% {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+  25% {
+    transform: rotate(35deg) translate(-50%, -50%);
+  }
+  75% {
+    transform: rotate(-35deg) translate(-50%, -50%);
+  }
+  100% { 
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+`;
+
+export const Egg = styled.div`
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 200px;
+  height: 250px;
+  background: #FFF;
+  border-top-left-radius: 50% 60%;
+  border-top-right-radius: 50% 60%;
+  border-bottom-left-radius: 50% 40%;
+  border-bottom-right-radius: 50% 40%;
+  box-shadow: inset -10px -5px #EAEFDD;
+  animation: ${wobble} 8s linear infinite;
+  transform-origin: 0 50%;
+  zoom: ${props => props.zoom};
+`;
+
+export const Yolk = styled.div`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 130px;
+  height: 130px;
+  background: #FFDF50;
+  border-radius: 100%;
+  box-shadow: inset -5px -5px #F1AD41;
+
+  & .face .eyes {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    display: flex;
+    &::before, &::after {
+      display: block;
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: #884E2C;
+      border-radius: 100%;
+      margin: 0 30px;
+    }
+  }
+
+  & .face .mouth {
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 40px;
+    height: 20px;
+    background: #884E2C;
+    border-radius: 15px 15px 70px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    &::after {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 8px;
+      background: #CD5B4D;
+      border-radius: 5px 5px 100% 100%;
+      margin-bottom: 2px;
+    }
+  }
+`;
+
+export const ReturnButton = styled.button`
+  margin-top: 20px;
+  background: #ffe400;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  width: 12rem;
+  height: 4rem;
+  font-family: "BMJUA";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #654321;
+  justify-content: center;
+  transition: 0.3s;
 `
