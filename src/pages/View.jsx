@@ -62,7 +62,7 @@ const View = () => {
           <ins
             className="kakao_ad_area"
             style={{ display: "none" }}
-            data-ad-unit="DAN-bnBf2UOV5jx9ThPY"
+            data-ad-unit="DAN-DkBs8eBzhyzW3xTF"
             data-ad-width="320"
             data-ad-height="100"
           />
