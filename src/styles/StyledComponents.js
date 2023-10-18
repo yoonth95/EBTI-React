@@ -507,7 +507,67 @@ export const ResultBtn = styled.div`
   @media (max-width: 480px) {
     width: 50%;
   }
-`
+`;
+
+export const FooterBox = styled.div`
+  width: 100%;
+  background-color: #f6e5c4;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const FooterInfo = styled.div`
+  font-family: "BMJUA";
+  font-weight: 500;
+`;
+
+export const FooterHeader = styled.div`
+  color: #8b4513;
+  font-weight: 700;
+  font-size: 15px;
+`;
+
+export const FooterName = styled.div`
+  color: #ffab00;
+  font-weight: 600;
+  font-size: 13px;
+`;
+
+export const FooterIcons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FooterLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  background: aliceblue;
+  border-radius: 50%;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  color: #ffab00;
+
+  &:hover {
+    text-decoration: underline;
+    background-color: #ffab00;
+    color: #fff;
+  }
+`;
+
+export const Copyright = styled.p`
+  font-size: 0.9em;
+  margin-top: 10px;
+  color: #8b45134f;
+`;
 
 // view 페이지
 export const ViewContainer = styled.main`
