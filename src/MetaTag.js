@@ -14,7 +14,7 @@ const MetaTag = () => {
       <meta property="og:title" content="나는 어떤 계란 요리일까?" />
       <meta property="og:site_name" content="나는 어떤 계란 요리일까?" />
       <meta property="og:description" content="계란 요리로 보는 성격 유형 테스트" />
-      <meta property="og:url" content="https://egg-test.web.app/" />
+      <meta property="og:url" content="https://egg-mbti.net/" />
       <meta name="image" property="og:image" content={MainImage} />
 
       <meta name="twitter:title" content="나는 어떤 계란 요리일까?" />

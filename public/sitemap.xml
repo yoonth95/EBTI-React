@@ -7,22 +7,22 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-    <loc>https://egg-test.web.app/</loc>
+    <loc>https://egg-mbti.net/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
 </url>
 <url>
-    <loc>https://egg-test.web.app/test</loc>
+    <loc>https://egg-mbti.net/test</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
 </url>
 <url>
-    <loc>https://egg-test.web.app/result</loc>
+    <loc>https://egg-mbti.net/result</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
 </url>
 <url>
-    <loc>https://egg-test.web.app/view</loc>
+    <loc>https://egg-mbti.net/view</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
 </url>
