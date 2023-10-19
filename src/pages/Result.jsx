@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import resultInfo from 'data/resultInfo';
 import { GlobalStyles, ResultContainer, TotalPage, ResultPage, ResultTitleH1, ResultTitleP, ResultImage, ResultInfo, Guideline, GuidelineTitle, GuidelineList, UrlDown, YoutubeLink, ResultShare, Shares, ShareButton, ResultBtn, KakaoAd, FooterBox, FooterHeader, FooterName, FooterIcons, FooterLink, Copyright } from 'styles/StyledComponents'
 import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
@@ -11,7 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Result = () => {
-
+  const scriptElement = useRef(null);
   const mainUrl = "https://egg-mbti.net/";
   const currentUrl = window.location.href;
 
@@ -46,7 +46,18 @@ const Result = () => {
       }));
     });
 
+    const script = document.createElement("script");
+    script.setAttribute(
+      "src",
+      "https://t1.daumcdn.net/kas/static/ba.min.js"
+    );
+    script.setAttribute(
+      "charset",
+      "utf-8"
+    );
 
+    script.setAttribute("async", "true");
+    scriptElement.current?.appendChild(script);
   }, [location]);
 
   const renderTextWithBreaks = (text) => {
@@ -189,6 +200,15 @@ const Result = () => {
             <Copyright>Copyright © 2023 yoonth0919 All rights reserved.</Copyright>
           </FooterBox>
 
+          <KakaoAd ref={scriptElement}>
+            <ins
+              className="kakao_ad_area"
+              style={{ display: "none" }}
+              data-ad-unit="DAN-CBX5bsNF81WX46bK"
+              data-ad-width="320"
+              data-ad-height="50"
+            />
+          </KakaoAd>
         </TotalPage>
         
         <ToastContainer />
