@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { GlobalStyles, ViewContainer, H1, H2, GridContainer, GridItem, KakaoAd } from 'styles/StyledComponents'
+import React, { useEffect, useState } from 'react';
+import { GlobalStyles, ViewContainer, H1, H2, GridContainer, GridItem } from 'styles/StyledComponents'
+import KakaoAdFit from 'components/KakaoAdFit';
 
 const gridData = [
   { title: '계란 김밥', alt: '계란 김밥 이미지' },
@@ -21,25 +22,11 @@ const gridData = [
 ]
 
 const View = () => {
-  const scriptElement = useRef(null);
   const [imgList, setImgList] = useState([]);
 
   useEffect(() => {
     const images = Array.from({ length: 16 }, (_, i) => require(`../assets/images/${i+1}.png`))
     setImgList(images);
-
-    const script = document.createElement("script");
-    script.setAttribute(
-      "src",
-      "https://t1.daumcdn.net/kas/static/ba.min.js"
-    );
-    script.setAttribute(
-      "charset",
-      "utf-8"
-    )
-
-    script.setAttribute("async", "true");
-    scriptElement.current?.appendChild(script);
   }, []);
 
   return (
@@ -58,15 +45,9 @@ const View = () => {
             </GridItem>
           ))}
         </GridContainer>
-        <KakaoAd ref={scriptElement}>
-          <ins
-            className="kakao_ad_area"
-            style={{ display: "none" }}
-            data-ad-unit="DAN-DkBs8eBzhyzW3xTF"
-            data-ad-width="320"
-            data-ad-height="100"
-          />
-        </KakaoAd>
+
+        <KakaoAdFit unitValue="DAN-DkBs8eBzhyzW3xTF" adWidth="320" adHeight="100" />
+
       </ViewContainer>
     </>
   );
