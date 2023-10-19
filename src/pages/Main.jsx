@@ -2,15 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GlobalStyles, Container, H1, H2, Image, StartButton } from 'styles/StyledComponents'
 import img1 from 'assets/images/img1.png';
-import app from 'firebaseConfig';
-import { getAnalytics, logEvent } from "firebase/analytics";
 
 const Main = () => {
-  const analytics = getAnalytics(app);
   const navigate = useNavigate();
 
   const move = () => {
-    logEvent(analytics, 'test_start', { name: 'start'});
     navigate('/test');
   }
 
