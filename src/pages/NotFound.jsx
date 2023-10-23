@@ -40,7 +40,7 @@ const NotFound = () => {
         <H1 marginTop={'180px'}>찾을 수 없는 페이지입니다.</H1>
         <ReturnButton type='button' onClick={() => move()}>돌아가기</ReturnButton>
 
-        {windowHeight > 650 && <Footer />}
+        {windowHeight > 650 && <Footer position='fixed' bottom='0px'/>}
       </Container>
     </>
   );

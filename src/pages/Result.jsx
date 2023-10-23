@@ -32,19 +32,22 @@ const Result = () => {
     const query = queryParams.get('idx');
     const eggType = resultInfo[query];
 
-    // 동적 import
-    import(`assets/images/${eggType['typeImage']}`).then((image) => {
-      setEggTypeInfo(prev => ({
-        ...prev,
-        typeTitle: eggType['typeTitle'],
-        typeImage: image.default,
-        typeName: eggType['typeName'],
-        typeTag: eggType['typeTag'],
-        typeUrl: eggType['typeUrl'],
-        typeInfo: splitList(eggType['typeInfo']),
-        typeGuide: splitList(eggType['typeGuide'])
-      }));
-    });
+    if (!eggType) navigate('/not-found');
+    else {
+      // 동적 import
+      import(`assets/images/${eggType['typeImage']}`).then((image) => {
+        setEggTypeInfo(prev => ({
+          ...prev,
+          typeTitle: eggType['typeTitle'],
+          typeImage: image.default,
+          typeName: eggType['typeName'],
+          typeTag: eggType['typeTag'],
+          typeUrl: eggType['typeUrl'],
+          typeInfo: splitList(eggType['typeInfo']),
+          typeGuide: splitList(eggType['typeGuide'])
+        }));
+      });
+    }
   }, [location]);
 
   const renderTextWithBreaks = (text) => {

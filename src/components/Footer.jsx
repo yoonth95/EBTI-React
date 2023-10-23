@@ -3,10 +3,10 @@ import { FooterBox, FooterHeader, FooterName, FooterIcons, FooterLink, Copyright
 import { faGithub, faVimeoV } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Footer = () => {
+const Footer = ({ position, bottom }) => {
   return (
     <>
-      <FooterBox>
+      <FooterBox style={{ position: `${position}`, bottom: `${bottom}` }}>
         <FooterHeader>Developer</FooterHeader>
         <FooterName>yoonth0919</FooterName>
 
