@@ -1,12 +1,41 @@
-import React, { useEffect, useRef, useState } from 'react';
-import questionData from 'data/question';
-import resultData from 'data/result';
-import loadingImage from 'assets/images/egg_loading.gif';
-import { GlobalStyles, Container, TestButton, ProgressDiv, ProgressText, ProgressLine, PrevBtn, Progress, ProgressBar, QuestionDiv, Question, Loading, Image } from 'styles/StyledComponents'
-import { faChevronLeft, faFaceGrinBeamSweat, faBookOpenReader, faListCheck, faPersonCircleQuestion, faPencil, faUtensils, faMapLocationDot, faKitchenSet, faChildren, faReceipt } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useRef, useState } from "react";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../firebase/firebaseInit";
+import questionData from "data/question";
+import resultData from "data/result";
+import resultInfo from "data/resultInfo";
+import loadingImage from "assets/images/egg_loading.gif";
+import {
+  GlobalStyles,
+  Container,
+  TestButton,
+  ProgressDiv,
+  ProgressText,
+  ProgressLine,
+  PrevBtn,
+  Progress,
+  ProgressBar,
+  QuestionDiv,
+  Question,
+  Loading,
+  Image,
+} from "styles/StyledComponents";
+import {
+  faChevronLeft,
+  faFaceGrinBeamSweat,
+  faBookOpenReader,
+  faListCheck,
+  faPersonCircleQuestion,
+  faPencil,
+  faUtensils,
+  faMapLocationDot,
+  faKitchenSet,
+  faChildren,
+  faReceipt,
+} from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Test = () => {
   const navigate = useNavigate();
@@ -27,12 +56,12 @@ const Test = () => {
     faKitchenSet: faKitchenSet,
     faChildren: faChildren,
     faReceipt: faReceipt,
-    faThumbsUp: faThumbsUp, 
-    faFaceSadTear: faFaceSadTear
+    faThumbsUp: faThumbsUp,
+    faFaceSadTear: faFaceSadTear,
   };
 
   useEffect(() => {
-    if (qNum === questionData.length-1) {
+    if (qNum === questionData.length - 1) {
       handleResults();
     }
 
@@ -40,22 +69,22 @@ const Test = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-    }
+    };
   }, [qNum, choices]);
 
   const prevClick = () => {
     if (qNum > 0) {
-      setQNum(prev => prev-1);
+      setQNum((prev) => prev - 1);
     }
-  }
+  };
 
   const btnClick = (choice) => {
-    setChoices(prev => ({ ...prev, [qNum]: choice }));
-    const nextNum = qNum+1;
-    if (qNum < questionData.length -1) {
+    setChoices((prev) => ({ ...prev, [qNum]: choice }));
+    const nextNum = qNum + 1;
+    if (qNum < questionData.length - 1) {
       setQNum(nextNum);
     }
-  }
+  };
 
   const decodeUnicode = (str) => {
     return decodeURIComponent(
@@ -66,18 +95,20 @@ const Test = () => {
         })
         .join("")
     );
-  }
+  };
 
   const handleResults = async () => {
     if (Object.keys(choices).length === questionData.length) {
       const typeIdx = await weightCalc();
       setIsFinished(true);
-      
+      const eggType = resultInfo[typeIdx];
+
       timeoutRef.current = setTimeout(() => {
         navigate(`/result?idx=${typeIdx}`);
+        logEvent(analytics, eggType["typeName"] || "error");
       }, 2000);
     }
-  }
+  };
 
   const weightCalc = async () => {
     let sumList = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -89,42 +120,52 @@ const Test = () => {
       }
     }
 
-    const first = sumList[0] > sumList[1] ? 'E' : 'I';
-    const second = sumList[2] > sumList[3] ? 'S' : 'N';
-    const fourth = sumList[4] > sumList[5] ? 'J' : 'P';
-    const third = sumList[6] > sumList[7] ? 'T' : 'F';
-    const typeIdx = resultData[first+second+third+fourth];
+    const first = sumList[0] > sumList[1] ? "E" : "I";
+    const second = sumList[2] > sumList[3] ? "S" : "N";
+    const fourth = sumList[4] > sumList[5] ? "J" : "P";
+    const third = sumList[6] > sumList[7] ? "T" : "F";
+    const typeIdx = resultData[first + second + third + fourth];
 
     return typeIdx;
-  }
+  };
 
   const renderTextWithBreaks = (text) => {
-    return text.split('<br />').map((part, index) => (
+    return text.split("<br />").map((part, index) => (
       <React.Fragment key={index}>
         {part}
-        {index !== text.split('<br />').length - 1 && <br />}
+        {index !== text.split("<br />").length - 1 && <br />}
       </React.Fragment>
     ));
-  }
+  };
 
   return (
     <>
-      <GlobalStyles bgColor={'#fff2cc'} />
+      <GlobalStyles $bgColor={"#fff2cc"} />
 
-      <Container justifyContent={'flex-start'} maxWidth={'480px'}>
-        {isFinished ? 
+      <Container $justifyContent={"flex-start"} $maxWidth={"480px"}>
+        {isFinished ? (
           <Loading>
             <p>loading...</p>
-            <Image src={loadingImage} alt='로딩이미지' title='로딩이미지'/>
+            <Image src={loadingImage} alt="로딩이미지" title="로딩이미지" />
           </Loading>
-          :
+        ) : (
           <>
             <ProgressDiv>
-              <ProgressText><strong>{qNum+1}</strong> / 12</ProgressText>
+              <ProgressText>
+                <strong>{qNum + 1}</strong> / 12
+              </ProgressText>
               <ProgressLine>
-                <PrevBtn onClick={prevClick}><FontAwesomeIcon icon={faChevronLeft} /></PrevBtn>
+                <PrevBtn onClick={prevClick}>
+                  <FontAwesomeIcon icon={faChevronLeft} />
+                </PrevBtn>
                 <Progress>
-                  <ProgressBar width={((qNum+1)*100)/questionData.length} role='progressbar' aria-valuenow={0} aria-valuemin={0} aria-valuemax={100}></ProgressBar>
+                  <ProgressBar
+                    $width={((qNum + 1) * 100) / questionData.length}
+                    role="progressbar"
+                    aria-valuenow={0}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  ></ProgressBar>
                 </Progress>
               </ProgressLine>
             </ProgressDiv>
@@ -137,11 +178,15 @@ const Test = () => {
             </QuestionDiv>
 
             <div key={qNum}>
-              <TestButton type='button' id='a1' onClick={() => btnClick('1')}>{renderTextWithBreaks(questionData[qNum]["choice1"])}</TestButton>
-              <TestButton type='button' id='a2' onClick={() => btnClick('2')}>{renderTextWithBreaks(questionData[qNum]["choice2"])}</TestButton>
+              <TestButton type="button" id="a1" onClick={() => btnClick("1")}>
+                {renderTextWithBreaks(questionData[qNum]["choice1"])}
+              </TestButton>
+              <TestButton type="button" id="a2" onClick={() => btnClick("2")}>
+                {renderTextWithBreaks(questionData[qNum]["choice2"])}
+              </TestButton>
             </div>
           </>
-        }
+        )}
       </Container>
     </>
   );
