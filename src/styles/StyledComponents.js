@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${props => props.bgColor}
+    background-color: ${({ $bgColor }) => $bgColor};
   }
 
   ::-webkit-scrollbar {
@@ -29,11 +29,11 @@ export const GlobalStyles = createGlobalStyle`
 export const Container = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props.justifyContent};
+  justify-content: ${({ $justifyContent }) => $justifyContent};
   height: 100vh;
   text-align: center;
   position: relative;
-  max-width: ${props => props.maxWidth};
+  max-width: ${({ $maxWidth }) => $maxWidth};
   align-items: center;
   padding-right: 0px;
   padding-left: 0px;
@@ -50,7 +50,7 @@ export const H1 = styled.h1`
   line-height: 30px;
   color: #8b4513;
 
-  margin-top: ${props => props.marginTop};
+  margin-top: ${({ $marginTop }) => $marginTop};
 
   @media (max-width: 425px) {
     font-size: 1.8rem;
@@ -84,7 +84,7 @@ export const Image = styled.img`
   width: 20rem;
   height: 20rem;
   object-fit: contain;
-  margin: ${props => props.margin};
+  margin: ${({ $margin }) => $margin};
 
   @media (max-width: 425px) {
     width: 17rem;
@@ -172,7 +172,7 @@ export const ProgressText = styled.span`
 export const ProgressLine = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const PrevBtn = styled.span`
   border: 1px solid #fff2cc;
@@ -185,7 +185,7 @@ export const PrevBtn = styled.span`
   font-size: 12px;
   background-color: #fff;
   margin: 0 5px 0 0;
-  color: #8B4513;
+  color: #8b4513;
   cursor: pointer;
 `;
 
@@ -196,7 +196,7 @@ export const Progress = styled.div`
   height: 1rem;
   overflow: hidden;
   line-height: 0;
-  font-size: .75rem;
+  font-size: 0.75rem;
   border-radius: 0.25rem;
 `;
 
@@ -204,12 +204,12 @@ export const ProgressBar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: ${props => props.width}%;
+  width: ${({ $width }) => $width}%;
   overflow: hidden;
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  transition: width .6s ease;
+  transition: width 0.6s ease;
   background-color: #ffe400;
 `;
 
@@ -223,7 +223,7 @@ export const Question = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #8B4513;
+  color: #8b4513;
   font-family: "BMHANNAPro";
   font-style: normal;
   font-size: 1.5rem;
@@ -234,18 +234,18 @@ export const Question = styled.div`
     margin-bottom: 15px;
     font-size: 2rem;
   }
-`
+`;
 
 export const Loading = styled.div`
   margin-top: 150px;
 
   p {
-    color: #8B4513;
+    color: #8b4513;
     font-family: "BMHANNAPro";
     font-style: normal;
     font-size: 2.5rem;
   }
-`
+`;
 
 // result 페이지
 export const ResultContainer = styled.main`
@@ -261,7 +261,7 @@ export const ResultContainer = styled.main`
   height: 100%;
   width: 100%;
   margin: auto;
-`
+`;
 
 export const TotalPage = styled.div`
   transition: background-color 0.2s ease;
@@ -280,13 +280,13 @@ export const TotalPage = styled.div`
   flex-direction: column;
   background-color: #fff2cc;
   box-shadow: 0 -2px 10px 1px rgba(0, 0, 0, 0.2);
-`
+`;
 
 export const ResultPage = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`
+`;
 
 export const ResultTitleH1 = styled.h1`
   font-family: "BMJUA";
@@ -296,7 +296,7 @@ export const ResultTitleH1 = styled.h1`
   margin-top: 50px;
   text-align: center;
   color: #8b4513;
-`
+`;
 
 export const ResultTitleP = styled.p`
   font-family: "BMHANNAPro";
@@ -305,7 +305,7 @@ export const ResultTitleP = styled.p`
   font-size: 1.3rem;
   text-align: center;
   color: #654321;
-`
+`;
 
 export const ResultImage = styled.div`
   img {
@@ -331,7 +331,7 @@ export const ResultImage = styled.div`
       height: 17rem;
     }
   }
-`
+`;
 
 export const ResultInfo = styled.div`
   padding: 20px;
@@ -347,7 +347,7 @@ export const ResultInfo = styled.div`
     margin-bottom: 10px;
     font-family: "BMHANNAPro";
   }
-`
+`;
 
 export const Guideline = styled.div`
   max-width: 600px;
@@ -361,7 +361,7 @@ export const Guideline = styled.div`
   @media (max-width: 480px) {
     padding: 10px;
   }
-`
+`;
 
 export const GuidelineTitle = styled.h2`
   font-size: 24px;
@@ -372,7 +372,7 @@ export const GuidelineTitle = styled.h2`
   @media (max-width: 480px) {
     font-size: 20px;
   }
-`
+`;
 
 export const GuidelineList = styled.ol`
   list-style: decimal;
@@ -391,8 +391,7 @@ export const GuidelineList = styled.ol`
       font-size: 14px;
     }
   }
-  
-`
+`;
 
 export const UrlDown = styled.div`
   width: 100%;
@@ -400,7 +399,7 @@ export const UrlDown = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-`
+`;
 
 const SharedButtonStyles = `
   display: inline-flex;
@@ -428,7 +427,7 @@ export const YoutubeLink = styled.a`
   @media (max-width: 480px) {
     padding: 8px 12px;
   }
-`
+`;
 
 export const ResultShare = styled.div`
   margin: 30px;
@@ -441,7 +440,7 @@ export const ResultShare = styled.div`
     font-size: 16px;
     font-family: "BMHANNAPro";
   }
-`
+`;
 
 export const Shares = styled.div`
   display: flex;
@@ -462,11 +461,11 @@ export const ShareButton = styled.button`
   padding: 0px;
   border: 0px;
   outline: 0px;
-  
+
   &:hover {
     transform: translateY(-4px);
   }
-  
+
   & svg {
     width: 30px;
     height: 30px;
@@ -476,7 +475,7 @@ export const ShareButton = styled.button`
   &.clip {
     background-color: rgb(255, 138, 115);
   }
-  
+
   &.kakao {
     background-color: rgb(247, 213, 1);
   }
@@ -584,28 +583,28 @@ export const ViewContainer = styled.main`
   justify-content: center;
 
   &:first-child::before {
-    content: '';
+    content: "";
     height: 60px;
   }
-`
+`;
 
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto;
-  gap: 5px; 
+  gap: 5px;
   width: 100%;
   height: 540px;
   margin: 25px 0px 50px 0;
-`
+`;
 
 export const GridItem = styled.a`
-  background-color: #fff; 
+  background-color: #fff;
   border: none;
   color: white;
   text-align: center;
   padding: 10px;
   font-size: 16px;
-  border-radius: 15px; 
+  border-radius: 15px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -633,7 +632,7 @@ export const GridItem = styled.a`
       font-size: 0.9rem;
     }
   }
-`
+`;
 
 // 카카오 광고
 export const KakaoAd = styled.div`
@@ -642,7 +641,7 @@ export const KakaoAd = styled.div`
   align-items: center;
   height: 50px;
   width: -webkit-fill-available;
-`
+`;
 
 // NotFound.jsx
 const wobble = keyframes`
@@ -664,18 +663,18 @@ export const Egg = styled.div`
   position: fixed;
   top: 30%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 200px;
   height: 250px;
-  background: #FFF;
+  background: #fff;
   border-top-left-radius: 50% 60%;
   border-top-right-radius: 50% 60%;
   border-bottom-left-radius: 50% 40%;
   border-bottom-right-radius: 50% 40%;
-  box-shadow: inset -10px -5px #EAEFDD;
+  box-shadow: inset -10px -5px #eaefdd;
   animation: ${wobble} 8s linear infinite;
   transform-origin: 0 50%;
-  zoom: ${props => props.zoom};
+  zoom: ${({ $zoom }) => $zoom};
 `;
 
 export const Yolk = styled.div`
@@ -685,9 +684,9 @@ export const Yolk = styled.div`
   transform: translate(-50%, 0%);
   width: 130px;
   height: 130px;
-  background: #FFDF50;
+  background: #ffdf50;
   border-radius: 100%;
-  box-shadow: inset -5px -5px #F1AD41;
+  box-shadow: inset -5px -5px #f1ad41;
 
   & .face .eyes {
     position: absolute;
@@ -695,12 +694,13 @@ export const Yolk = styled.div`
     left: 50%;
     transform: translate(-50%, 0%);
     display: flex;
-    &::before, &::after {
+    &::before,
+    &::after {
       display: block;
-      content: '';
+      content: "";
       width: 12px;
       height: 12px;
-      background: #884E2C;
+      background: #884e2c;
       border-radius: 100%;
       margin: 0 30px;
     }
@@ -713,7 +713,7 @@ export const Yolk = styled.div`
     transform: translate(-50%, 0%);
     width: 40px;
     height: 20px;
-    background: #884E2C;
+    background: #884e2c;
     border-radius: 15px 15px 70px 70px;
     display: flex;
     justify-content: center;
@@ -721,10 +721,10 @@ export const Yolk = styled.div`
 
     &::after {
       display: block;
-      content: '';
+      content: "";
       width: 20px;
       height: 8px;
-      background: #CD5B4D;
+      background: #cd5b4d;
       border-radius: 5px 5px 100% 100%;
       margin-bottom: 2px;
     }
@@ -749,4 +749,4 @@ export const ReturnButton = styled.button`
   color: #654321;
   justify-content: center;
   transition: 0.3s;
-`
+`;
