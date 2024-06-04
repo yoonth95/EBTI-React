@@ -17,6 +17,7 @@ const App = () => {
           <Route path='/view' element={<View />}/>
 
           <Route path="/*" element={<NotFound />} />
+          <Route path="/not-found" element={<NotFound />} />
         </Routes>
       </Router>
     </>
